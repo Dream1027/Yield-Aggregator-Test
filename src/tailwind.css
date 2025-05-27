@@ -1,0 +1,237 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	@font-face {
+		font-family: 'Inter var';
+		font-style: normal;
+		font-weight: 100 900;
+		font-display: swap;
+		src: url('/fonts/inter.woff2') format('woff2');
+	}
+
+	@font-face {
+		font-family: 'JetBrains Mono';
+		font-style: normal;
+		font-weight: 800;
+		font-display: swap;
+		src: url('/fonts/jetbrains.ttf') format('truetype');
+	}
+
+	:root {
+		--font-jetbrains: 'JetBrains Mono', monospace;
+		--font-inter: 'Inter var', sans-serif;
+
+		--text-disabled: #757575;
+		--text1: #1f1f1f;
+		--text2: #565a69;
+		--text3: #888d9b;
+
+		--bg1: #fafafa;
+		--bg2: #f7f8fa;
+		--bg3: #edeef2;
+		--bg4: #ced0d9;
+		--bg5: #888d9b;
+		--bg6: #ffffff;
+		--bg7: rgba(252, 252, 251, 1);
+		--bg8: #ffffff;
+
+		--primary1: #445ed0;
+		--divider: rgba(43, 43, 43, 0.035);
+		--link: #2c71d2;
+		--blue: #2f80ed;
+		--dlnews: #002237;
+
+		--link-bg: #e9f0fa;
+		--link-hover-bg: #d5e0f7;
+		--link-text: #1e68d2;
+		--link-active-bg: #1e68d2;
+
+		--btn-bg: #eaeaea;
+		--btn-hover-bg: #efefef;
+
+		--btn2-bg: rgb(118 213 24 / 46%);
+		--btn2-hover-bg: rgba(33, 114, 229, 0.2);
+		--btn2-text: #445ed0;
+
+		--primary1-hover: rgba(68, 94, 208, 0.2);
+		--form-control-border: #e6e6e6;
+
+		--app-bg: #f7f7f7;
+		--cards-bg: lab(100% 0.01 -0.01);
+		--old-blue: #1f67d2;
+		--pct-green: #008a13;
+		--pct-red: #e60d02;
+	}
+
+	* {
+		min-width: 0;
+		text-wrap: pretty;
+	}
+
+	html {
+		font-family: var(--font-inter);
+		line-height: inherit;
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+		-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	}
+
+	html.dark {
+		--text-disabled: #999999;
+		--text1: #fafafa;
+		--text2: #c3c5cb;
+		--text3: #6c7284;
+
+		--bg1: #212429;
+		--bg2: #2c2f36;
+		--bg3: #40444f;
+		--bg4: #565a69;
+		--bg5: #565a69;
+		--bg6: #000000;
+		--bg7: rgba(7, 14, 15, 0.7);
+		--bg8: #17181c;
+
+		--primary1: #2172e5;
+		--divider: rgba(43, 43, 43, 0.435);
+		--dlnews: #ffffff;
+		--link: #3689ff;
+
+		--link-bg: #141d29;
+		--link-hover-bg: #1a2739;
+		--link-text: #629ff4;
+
+		--btn-bg: #22242a;
+		--btn-hover-bg: #282a31;
+
+		--btn2-bg: rgba(33, 114, 229, 0.1);
+		--btn2-hover-bg: rgba(33, 114, 229, 0.2);
+		--btn2-text: #2172e5;
+
+		--primary1-hover: rgba(33, 114, 229, 0.2);
+		--form-control-border: #2f3336;
+
+		--app-bg: #090b0c;
+		--cards-bg: #131516;
+		--pct-green: #3fb84f;
+		--pct-red: #e24a42;
+	}
+
+	body {
+		@apply text-black dark:text-white bg-[var(--app-bg)] text-sm;
+	}
+
+	#__next,
+	#__next > [data-rk] {
+		@apply flex flex-col w-full relative min-h-full isolate lg:flex-row;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		@apply text-balance;
+	}
+
+	button {
+		@apply pointer-events-auto cursor-pointer touch-none select-none outline-1 outline-offset-2 focus-visible:outline disabled:cursor-not-allowed data-[focus-visible]:outline;
+	}
+
+	a,
+	input,
+	textarea,
+	select {
+		@apply outline-1 outline-offset-2 focus-visible:outline disabled:cursor-not-allowed;
+	}
+
+	input,
+	textarea,
+	select {
+		@apply rounded-none text-inherit;
+	}
+
+	img,
+	picture,
+	video,
+	canvas,
+	svg {
+		@apply block max-w-full;
+	}
+
+	details {
+		@apply select-none;
+	}
+
+	details summary::-webkit-details-marker {
+		@apply hidden;
+	}
+
+	summary {
+		@apply list-none cursor-pointer;
+	}
+
+	#table-header {
+		scrollbar-width: none; /* Firefox */
+		background-color: #008a13;
+	}
+	#table-header::-webkit-scrollbar {
+		display: none; /* Safari and Chrome */
+	}
+}
+
+@layer components {
+	.no-scrollbar {
+		scrollbar-width: none;
+	}
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+
+	.dialog {
+		@apply fixed top-0 left-0 bottom-0 right-0 z-50 m-auto mb-0 flex flex-col gap-8 overflow-auto p-4 rounded-t-md w-full max-w-full min-h-[40vh] max-h-[70vh] sm:mb-auto sm:h-fit sm:min-h-[initial] sm:max-h-[calc(100%_-_32px)] sm:max-w-[min(calc(100%_-_32px),560px)] sm:rounded-md bg-[var(--bg1)] border border-[hsl(204,20%,88%)] dark:border-[hsl(204,3%,32%)];
+	}
+
+	[data-backdrop] {
+		@apply bg-black/40;
+	}
+
+	.drawer {
+		opacity: 0;
+		transform: translateY(100%);
+		transition: 0.2s ease-out;
+	}
+
+	.drawer[data-enter] {
+		opacity: 1;
+		transform: translateY(0%);
+	}
+
+	.drawer[data-leave] {
+		transition: 0.1s ease-out;
+	}
+
+	.drawer-to-left {
+		opacity: 0;
+		transform: translateX(100%);
+		transition: 0.2s ease-out;
+	}
+
+	.drawer-to-left[data-enter] {
+		opacity: 1;
+		transform: translateX(0%);
+	}
+
+	.drawer-to-left[data-leave] {
+		transition: 0.1s ease-out;
+	}
+
+	#fees-generated-chart > div > div > svg > g > image {
+		clip-path: inset(0% round 50%);
+	}
+}
+
+@layer utilities {
+}
